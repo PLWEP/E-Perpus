@@ -30,6 +30,8 @@ class InputPage extends StatelessWidget {
             },
           ),
           CustomListTile(
+            name: 'name',
+            className: '7.1',
             trailing: IconButton(
               icon: const Icon(Icons.save),
               onPressed: () {},

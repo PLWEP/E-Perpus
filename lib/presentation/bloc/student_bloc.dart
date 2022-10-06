@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:perpus/domain/entity/student.dart';
@@ -14,6 +16,10 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final DeleteStudent deleteStudent;
   final GetStudent getStudent;
   final SaveStudentPresent saveStudentPresent;
+
+  String name = '';
+  String classNumber = '';
+
   StudentBloc(
     this.addStudent,
     this.deleteStudent,
@@ -23,7 +29,15 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     on<AddStudentEvent>(
       (event, emit) async {
         emit(Loading());
-        final result = await addStudent.execute(event.student);
+
+        Student student = Student(
+          classNumber: classNumber,
+          name: name,
+          id: 0,
+          status: 'tidak hadir',
+        );
+
+        final result = await addStudent.execute(student);
 
         result.fold(
           (failure) {
@@ -83,5 +97,8 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
         );
       },
     );
+
+    on<ChangeClassNumber>((event, emit) => classNumber = event.classNumber);
+    on<ChangeName>((event, emit) => name = event.name);
   }
 }

@@ -1,34 +1,21 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:perpus/presentation/bloc/student_bloc.dart';
+import 'package:perpus/utils/list_class.dart';
 import 'package:perpus/utils/theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDropdown extends StatefulWidget {
-  const CustomDropdown({Key? key}) : super(key: key);
+  const CustomDropdown({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CustomDropdown> createState() => _CustomDropdownState();
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-  final List<String> items = [
-    '7.1',
-    '7.2',
-    '7.3',
-    '7.4',
-    '7.5',
-    '8.1',
-    '8.2',
-    '8.3',
-    '8.4',
-    '8.5',
-    '9.1',
-    '9.2',
-    '9.3',
-    '9.4',
-    '9.5',
-  ];
-
   String? selectedValue;
   final TextEditingController textEditingController = TextEditingController();
 
@@ -53,7 +40,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               'Pilih Kelas',
               style: defaultTextStyle,
             ),
-            items: items
+            items: listClass
                 .map((item) => DropdownMenuItem<String>(
                       value: item,
                       child: Text(
@@ -67,6 +54,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
               setState(() {
                 selectedValue = value as String;
               });
+              context.read<StudentBloc>().add(
+                    ChangeClassNumber(selectedValue!),
+                  );
             },
             buttonHeight: 70.h,
             buttonWidth: double.infinity.w,

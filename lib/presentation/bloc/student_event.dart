@@ -8,8 +8,7 @@ abstract class StudentEvent extends Equatable {
 }
 
 class AddStudentEvent extends StudentEvent {
-  final Student student;
-  const AddStudentEvent(this.student);
+  const AddStudentEvent();
 
   @override
   List<Object> get props => [];
@@ -36,4 +35,20 @@ class SaveStudentPresentEvent extends StudentEvent {
 
   @override
   List<Object> get props => [student];
+}
+
+class ChangeName extends StudentEvent {
+  final String name;
+  const ChangeName(this.name);
+
+  @override
+  List<Object> get props => [name];
+}
+
+class ChangeClassNumber extends StudentEvent {
+  final String classNumber;
+  const ChangeClassNumber(this.classNumber);
+
+  @override
+  List<Object> get props => [classNumber];
 }

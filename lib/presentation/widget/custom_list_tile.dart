@@ -3,7 +3,14 @@ import 'package:perpus/utils/theme.dart';
 
 class CustomListTile extends StatelessWidget {
   final Widget trailing;
-  const CustomListTile({Key? key, required this.trailing}) : super(key: key);
+  final String name;
+  final String className;
+  const CustomListTile(
+      {Key? key,
+      required this.trailing,
+      required this.name,
+      required this.className})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +20,13 @@ class CustomListTile extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         leading: const Icon(Icons.people),
         title: Text(
-          'Nama',
+          name,
           style: defaultTextStyle.copyWith(
             fontSize: 16,
           ),
         ),
         subtitle: Text(
-          'Kelas',
+          className,
           style: defaultTextStyle,
         ),
         trailing: trailing,

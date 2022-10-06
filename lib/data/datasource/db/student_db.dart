@@ -1,5 +1,5 @@
+import 'package:perpus/data/models/student_table.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:perpus/domain/entity/student.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
@@ -29,17 +29,18 @@ class DatabaseHelper {
   void _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE  $_tblstudent (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY autoincrement,
         name TEXT,
-        classname TEXT,
-        status INTEGER
+        classnumber TEXT,
+        status TEXT
       );
     ''');
   }
 
-  Future<int> addStudent(Student student) async {
+  Future<int> addStudent(StudentTable student) async {
     final db = await database;
-    return await db!.insert(_tblstudent, student.toMap());
+    return await db!.rawInsert(
+        'INSERT INTO $_tblstudent(name, classnumber, status) VALUES(${student.name}, ${student.classNumber}, ${student.status})');
   }
 
   Future<int> deleteStudent(int id) async {
@@ -60,9 +61,9 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<int?> saveStudentPresent(Student student) async {
+  Future<int?> saveStudentPresent(StudentTable student) async {
     final db = await database;
-    return await db?.update(_tblstudent, student.toMap(),
-        where: 'id = ?', whereArgs: [student.id]);
+    return await db?.rawUpdate(
+        'UPDATE $_tblstudent SET name = ${student.name}, classnumber = ${student.classNumber}, status = ${student.status} WHERE id = ${student.id}');
   }
 }

@@ -1,12 +1,12 @@
 import 'package:perpus/data/datasource/db/student_db.dart';
-import 'package:perpus/domain/entity/student.dart';
+import 'package:perpus/data/models/student_table.dart';
 import 'package:perpus/utils/exception.dart';
 
 abstract class StudentDataSource {
-  Future<String> addStudent(Student student);
+  Future<String> addStudent(StudentTable student);
   Future<String> deleteStudent(int id);
-  Future<List<Student>> getStudent();
-  Future<String> saveStudentPresent(Student student);
+  Future<List<StudentTable>> getStudent();
+  Future<String> saveStudentPresent(StudentTable student);
 }
 
 class StudentDataSourceImplementation implements StudentDataSource {
@@ -15,7 +15,7 @@ class StudentDataSourceImplementation implements StudentDataSource {
   StudentDataSourceImplementation(this.databaseHelper);
 
   @override
-  Future<String> addStudent(Student student) async {
+  Future<String> addStudent(StudentTable student) async {
     try {
       await databaseHelper.addStudent(student);
       return 'Added data';
@@ -35,13 +35,13 @@ class StudentDataSourceImplementation implements StudentDataSource {
   }
 
   @override
-  Future<List<Student>> getStudent() async {
+  Future<List<StudentTable>> getStudent() async {
     final result = await databaseHelper.getStudent();
-    return result.map((data) => Student.fromMap(data)).toList();
+    return result.map((data) => StudentTable.fromMap(data)).toList();
   }
 
   @override
-  Future<String> saveStudentPresent(Student student) async {
+  Future<String> saveStudentPresent(StudentTable student) async {
     try {
       await databaseHelper.saveStudentPresent(student);
       return 'Updated data';

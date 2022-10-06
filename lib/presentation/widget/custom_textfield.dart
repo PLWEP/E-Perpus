@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({Key? key}) : super(key: key);
+  final Function(String) onChanged;
+  final TextEditingController controller;
+  const CustomTextField(
+      {Key? key, required this.onChanged, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
-      margin: EdgeInsets.only(top: 20),
+    return Card(
+      margin: const EdgeInsets.only(top: 20),
       child: TextField(
-        decoration: InputDecoration(
+        controller: controller,
+        onChanged: onChanged,
+        decoration: const InputDecoration(
           hintText: 'Masukan Nama',
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(
