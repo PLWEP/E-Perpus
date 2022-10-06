@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:perpus/presentation/page/class_selection_page.dart';
-import 'package:perpus/presentation/page/success_page.dart';
 import 'package:perpus/presentation/widget/custom_button.dart';
-import 'package:perpus/presentation/widget/custom_dropdown.dart';
+import 'package:perpus/presentation/widget/custom_list_tile.dart';
 import 'package:perpus/presentation/widget/custom_main_container.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +21,7 @@ class InputPage extends StatelessWidget {
             height: 50.h,
             title: 'Kembali',
             fontSize: 24.sp,
+            margin: const EdgeInsets.only(bottom: 10),
             onPressed: () {
               Navigator.pushReplacementNamed(
                 context,
@@ -29,19 +29,11 @@ class InputPage extends StatelessWidget {
               );
             },
           ),
-          const CustomDropdown(),
-          CustomButton(
-            width: double.infinity.w,
-            height: 60.h,
-            title: "Submit Kehadiran",
-            fontSize: 32.sp,
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                SuccessPage.routeName,
-              );
-            },
-            margin: const EdgeInsets.only(top: 10),
+          CustomListTile(
+            trailing: IconButton(
+              icon: const Icon(Icons.save),
+              onPressed: () {},
+            ),
           ),
         ],
       ),

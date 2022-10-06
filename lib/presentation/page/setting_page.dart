@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:perpus/presentation/page/add_data_page.dart';
-import 'package:perpus/presentation/page/edit_data_page.dart';
+import 'package:perpus/presentation/page/home_page.dart';
 import 'package:perpus/presentation/widget/custom_button.dart';
 import 'package:perpus/presentation/widget/custom_util_container.dart';
 
@@ -13,6 +13,12 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomUtilContainer(
       title: 'Pengaturan',
+      onPressed: () {
+        Navigator.pushReplacementNamed(
+          context,
+          HomePage.routeName,
+        );
+      },
       child: Column(
         children: [
           CustomButton(
@@ -24,19 +30,6 @@ class SettingPage extends StatelessWidget {
               Navigator.pushReplacementNamed(
                 context,
                 AddDataPage.routeName,
-              );
-            },
-            margin: const EdgeInsets.only(top: 10),
-          ),
-          CustomButton(
-            width: double.infinity.w,
-            height: 60.h,
-            title: "Edit data",
-            fontSize: 32.sp,
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                EditDataPage.routeName,
               );
             },
             margin: const EdgeInsets.only(top: 10),

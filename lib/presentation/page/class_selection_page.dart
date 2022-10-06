@@ -21,6 +21,7 @@ class ClassSelectionPage extends StatelessWidget {
             height: 50.h,
             title: 'Kembali',
             fontSize: 24.sp,
+            margin: const EdgeInsets.only(bottom: 10),
             onPressed: () {
               Navigator.pushReplacementNamed(
                 context,
@@ -28,18 +29,15 @@ class ClassSelectionPage extends StatelessWidget {
               );
             },
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                CustomClassItem(title: '7.1'),
-                CustomClassItem(title: '7.2'),
-                CustomClassItem(title: '7.3'),
-                CustomClassItem(title: '7.4'),
-              ],
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              CustomClassItem(title: '7.1'),
+              CustomClassItem(title: '7.2'),
+              CustomClassItem(title: '7.3'),
+              CustomClassItem(title: '7.4'),
+            ],
           ),
         ],
       ),

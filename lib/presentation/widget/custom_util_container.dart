@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:perpus/presentation/page/home_page.dart';
 import 'package:perpus/presentation/widget/custom_button.dart';
 import 'package:perpus/utils/theme.dart';
 
 class CustomUtilContainer extends StatelessWidget {
   final String title;
   final Widget child;
+  final Function() onPressed;
   const CustomUtilContainer(
-      {Key? key, required this.title, required this.child})
+      {Key? key,
+      required this.title,
+      required this.child,
+      required this.onPressed})
       : super(key: key);
 
   @override
@@ -62,12 +65,7 @@ class CustomUtilContainer extends StatelessWidget {
                       height: 50.h,
                       title: 'Kembali',
                       fontSize: 24.sp,
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          HomePage.routeName,
-                        );
-                      },
+                      onPressed: onPressed,
                     ),
                     child,
                   ],
